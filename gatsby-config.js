@@ -1,17 +1,21 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `David Park`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `David Park`,
+      position: `Computer Engineering Student`,
+      summary: `who lives and works in South Korea building useful things.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
+    description: `A starter blog.`,
+    siteUrl: `https://dpjungmin.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `dpjungmin`,
+      email: `dpjungmin@gmail.com`,
+      linkedin: `https://www.linkedin.com/in/dpjungmin/`,
     },
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

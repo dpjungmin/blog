@@ -1,0 +1,3 @@
+const zIndex = {}
+
+export { zIndex }
