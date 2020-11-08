@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 import { theme, mixin, media } from "@styles"
 
-const { palette, fonts, fontSize, transition } = theme
+const { palette, font, fontSize, transition } = theme
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
+    padding: 0;
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
@@ -26,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     background-color: ${palette.bg};
     color: ${palette.text};
-    font-family: ${fonts.body};
+    font-family: ${font.body};
     font-size: 1rem;
   }
 

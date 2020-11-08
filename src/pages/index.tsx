@@ -1,9 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { WindowLocation } from "@reach/router"
-import { Link } from "gatsby"
 import { Bio, Layout, SEO } from "@components"
-import { media, mixin } from "@styles"
+import { mixin } from "@styles"
 
 interface IndexPageProps {
   readonly location: WindowLocation | undefined

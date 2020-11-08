@@ -1,35 +1,28 @@
 import React from "react"
 import styled from "styled-components"
-import { useStaticQuery, graphql, Link } from "gatsby"
 import Image from "gatsby-image"
-import { theme, mixin } from "@styles"
+import { useStaticQuery, graphql, Link } from "gatsby"
+import { theme, mixin, media } from "@styles"
 import { Icon } from "@components"
 
 interface BioProps {}
 
-const { palette, transition } = theme
+const { palette, fontSize, transition } = theme
 
 const StyledContainer = styled.div`
   ${mixin.flexCenter}
+  min-height: 100vh;
   flex-direction: column;
   position: relative;
-  border-bottom: 1px solid ${palette.hr};
-  padding: 0 20px 60px;
+  padding: 20px 40px;
 `
 
 const StyledHeader = styled.h2`
   font-size: 35px;
-`
-
-const StyledMe = styled(Link)`
-  background-color: #626ee3;
-  color: white;
-  padding: 15px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 20%;
-  border-bottom-left-radius: 40%;
-  border-bottom-right-radius: 20%;
-  font-size: 14px;
+  ${media.phablet`
+    width: 100%;  
+    justify-content: right;
+  `}
 `
 
 const StyledSubHeader = styled.h4`
@@ -45,26 +38,23 @@ const StyledPic = styled(Image)`
   height: 250px;
   width: 250px;
   border-radius: 50%;
-  box-shadow: 0 10px 30px 1px rgba(0, 0, 0, 0.3);
+  ${mixin.boxShadow.picture}
   margin: 0 0 40px;
-  background-color: #d7d7db;
+  background-color: ${palette.picBg};
 `
 
-const StyledSocialMedia = styled.div`
+const StyledLinkedInLink = styled.div`
   position: absolute;
   bottom: 30px;
-  right: 0;
+  right: 4px;
   display: flex;
   align-items: center;
   padding: 0;
   margin: 0;
   list-style: none;
-`
-
-const StyledLink = styled.a`
   svg {
     width: 32px;
-    fill: #0177b7;
+    fill: ${palette.blue};
     transition: ${transition};
     &:hover,
     &:focus {
@@ -74,17 +64,28 @@ const StyledLink = styled.a`
   }
 `
 
-const StyledBio = styled.div``
+const StyledBio = styled.div`
+  ${mixin.flexCenter}
+`
 
-const StyledBlogLink = styled(Link)`
-  display: flex;
+const StyledLinkBlock = styled.div`
+  ${mixin.flexAround}
   margin-top: 20px;
-  ${mixin.inlineLink}
-  font-size: 20px;
   font-weight: 600;
-  svg {
-    width: 27px;
-    margin-right: 6px;
+  font-size: ${fontSize.md};
+  ${media.phablet`
+    width: 100%;
+    justify-content: right;
+  `}
+`
+const StyledLink = styled(Link)`
+  background-color: ${palette.purple};
+  ${mixin.boxShadow.button}
+  border-radius: 4px;
+  color: white;
+  padding: 15px 30px;
+  &:hover {
+    background-color: ${palette.purpleHover};
   }
 `
 
@@ -121,33 +122,30 @@ const Bio: React.FC<BioProps> = () => {
 
   return (
     <StyledContainer>
-      <StyledHeader>
-        {name} <StyledMe to="/me">More about me</StyledMe>
-      </StyledHeader>
+      <StyledHeader>{name}</StyledHeader>
       <StyledSubHeader>{position}</StyledSubHeader>
       <StyledWrapper>
+        <div></div>
         <StyledPic fixed={avatar} alt={name || `profile-pic`} />
-        <StyledSocialMedia>
-          <StyledLink
+        <StyledLinkedInLink>
+          <a
             href={linkedin}
-            className="linkedin"
             target="_blank"
             rel="nofollow noopener noreferrer"
             aria-label="linkedin"
           >
             <Icon name="linkedin" />
-          </StyledLink>
-        </StyledSocialMedia>
+          </a>
+        </StyledLinkedInLink>
       </StyledWrapper>
       <StyledBio>
         <p>
           Hi I'm <strong>{name}</strong> {summary || null}
         </p>
       </StyledBio>
-      <StyledBlogLink className="blog" to="/blog">
-        <Icon name="pencil" />
-        Visit my blog
-      </StyledBlogLink>
+      <StyledLinkBlock>
+        <StyledLink to="/blog">Blog</StyledLink>
+      </StyledLinkBlock>
     </StyledContainer>
   )
 }

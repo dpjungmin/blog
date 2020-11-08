@@ -1,10 +1,32 @@
+import { Category } from "@components/blog"
+
 const palette = {
   bg: "#f6f9fc",
   text: "#2e353f",
   textLight: "#4f5969",
   hr: "#d1dce5",
+  picBg: "#d7d7db",
   link: "#6772e5",
   linkHover: "#51adef",
+  lightPurple: "#626ee3",
+  purple: "#6772e5",
+  purpleHover: "#535dc5",
+  blue: "#0177b7",
+}
+
+const mapCategoryToColor = (t: string) => {
+  switch (t) {
+    case "algorithm":
+      return "#890023"
+    case "travel":
+      return "#20ad2b"
+    case "daily":
+      return "#626ee3"
+    case "research":
+      return "#110f0f"
+    default:
+      return "grey"
+  }
 }
 
 const fontFamily = {
@@ -14,7 +36,7 @@ const fontFamily = {
   serif: `"Merriweather", "Georgia", Cambria, "Times New Roman"`,
 }
 
-const fonts = {
+const font = {
   body: fontFamily.serif,
   header: fontFamily.sans,
 }
@@ -31,7 +53,8 @@ const fontSize = {
 
 const theme = {
   palette,
-  fonts,
+  mapCategoryToColor,
+  font,
   fontSize,
   easing: "cubic-bezier(0.645, 0.045, 0.355, 1)",
   transition: "all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1)",

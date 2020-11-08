@@ -1,0 +1,7 @@
+# Post
+- category: string
+- date: Date
+- title: string
+- slug: string
+- description: string
+- tags: string[]

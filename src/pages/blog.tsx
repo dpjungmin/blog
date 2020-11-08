@@ -1,77 +1,95 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import { Bio, Layout, SEO } from "@components"
+import React, { useState, useEffect } from "react"
+import styled from "styled-components"
+import { graphql } from "gatsby"
+import { WindowLocation } from "@reach/router"
+import { Layout, SEO } from "@components"
+import { BlogPosts, Category } from "@components/blog"
+import { mixin, media } from "@styles"
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
-
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
+interface BlogPageProps {
+  readonly location: WindowLocation | undefined
+  data: {
+    allMarkdownRemark: {
+      nodes: {
+        excerpt: string
+        timeToRead: string
+        fields: {
+          slug: string
+        }
+        frontmatter: {
+          title: string
+          date: string
+          description: string
+          category: string
+        }
+      }[]
+    }
+    categories: {
+      group: {
+        fieldValue: string
+        totalCount: number
+      }[]
+    }
   }
+}
+
+const StyledContainer = styled.div`
+  ${mixin.container}
+  max-width: 1400px;
+  position: relative;
+`
+
+const StyledWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+const BlogPage: React.FC<BlogPageProps> = ({ data, location }) => {
+  const [selected, setSelected] = useState<string | undefined>(undefined)
+  const [posts, setPosts] = useState<any[]>(data.allMarkdownRemark.nodes)
+  const categories = data.categories.group
+
+  useEffect(() => {
+    if (!selected) return setPosts(data.allMarkdownRemark.nodes)
+    const allPosts = data.allMarkdownRemark.nodes
+    var filteredPosts: any[] = []
+    allPosts.forEach(post => {
+      if (post.frontmatter.category === selected) {
+        filteredPosts.push(post)
+      }
+    })
+    setPosts(filteredPosts)
+  }, [selected])
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <SEO title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
-
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+      <StyledContainer>
+        {posts && categories && (
+          <StyledWrapper>
+            <Category
+              selected={selected}
+              setSelected={setSelected}
+              categories={categories}
+            />
+            <BlogPosts posts={posts} />
+          </StyledWrapper>
+        )}
+      </StyledContainer>
     </Layout>
   )
 }
 
-export default BlogIndex
+export default BlogPage
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt
+        timeToRead
         fields {
           slug
         }
@@ -79,7 +97,14 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          category
         }
+      }
+    }
+    categories: allMarkdownRemark(limit: 2000) {
+      group(field: frontmatter___category) {
+        fieldValue
+        totalCount
       }
     }
   }

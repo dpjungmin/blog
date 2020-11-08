@@ -1,7 +1,11 @@
 ---
-title: Hello World
+category: travel
 date: "2015-05-01T22:12:03.284Z"
+title: Hello World
 description: "Hello World"
+tags:
+  - test1
+  - test2
 ---
 
 This is my first post on my new fake blog! How exciting!
