@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { WindowLocation } from "@reach/router"
 import { Layout, SEO } from "@components"
 import { BlogPosts, Category } from "@components/blog"
-import { mixin, media } from "@styles"
+import { theme, mixin, media } from "@styles"
+
+const { fontSize } = theme
 
 interface BlogPageProps {
   readonly location: WindowLocation | undefined
@@ -32,6 +34,24 @@ interface BlogPageProps {
     }
   }
 }
+
+const StyledBackButton = styled(Link)`
+  position: fixed;
+  top: 0;
+  left: 10%;
+  ${mixin.flexCenter}
+  background-color: #02203c;
+  color: white;
+  font-size: ${fontSize.lg};
+  border-radius: 0 0 4px 4px;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  svg {
+    width: 24px;
+    margin-right: 4px;
+  }
+  ${media.phablet`left: 70%;`};
+`
 
 const StyledContainer = styled.div`
   ${mixin.container}
@@ -66,6 +86,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO title="All posts" />
+      <StyledBackButton to="/">Back</StyledBackButton>
       <StyledContainer>
         {posts && categories && (
           <StyledWrapper>
