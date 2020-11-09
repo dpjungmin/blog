@@ -1,5 +1,3 @@
-import { Category } from "@components/blog"
-
 const palette = {
   bg: "#f6f9fc",
   text: "#2e353f",

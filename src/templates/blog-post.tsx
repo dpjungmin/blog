@@ -1,61 +1,108 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-
+import styled, { css } from "styled-components"
+import { WindowLocation } from "@reach/router"
+import { graphql } from "gatsby"
 import { Layout, SEO } from "@components"
+import { PostHeader, PostNav, IndexButton } from "@components/post"
+import { mixin, theme, media } from "@styles"
 
-const BlogPostTemplate = ({ data, location }) => {
+const { mapCategoryToColor, fontSize } = theme
+
+const StyledContainer = styled.div`
+  ${mixin.container}
+  max-width: 1000px;
+  ${media.desktop`max-width: 760px;`}
+  ${media.tablet`width: 95%;`}
+`
+
+const StyledWrapper = styled.div<{ category: string }>`
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  ${props => css`
+    border-left: 4px solid ${mapCategoryToColor(props.category)};
+  `}
+  margin: 20px 0 0;
+  min-width: 0;
+`
+
+const StyledArticle = styled.article`
+  padding: 30px 60px;
+`
+
+const StyledPost = styled.section`
+  img {
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #f6f9fc;
+    display: block;
+  }
+`
+
+interface BlogPostTemplate {
+  readonly location: WindowLocation | undefined
+  data: {
+    markdownRemark: {
+      id: string
+      excerpt: string
+      timeToRead: number
+      html: string
+      frontmatter: {
+        title: string
+        date: string
+        description: string
+        category: string
+      }
+    }
+    previous: {
+      fields: {
+        slug: string
+      }
+      frontmatter: {
+        title: string
+      }
+    }
+    next: {
+      fields: {
+        slug: string
+      }
+      frontmatter: {
+        title: string
+      }
+    }
+  }
+}
+
+const BlogPostTemplate: React.FC<BlogPostTemplate> = ({ data, location }) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const { id, excerpt, timeToRead, html, frontmatter } = post
+  const { title, date, description, category } = frontmatter
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-        </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
-        <hr />
-        <footer></footer>
-      </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+    <Layout location={location}>
+      <SEO title={title} description={description || excerpt} />
+      <StyledContainer className="fillSide">
+        <IndexButton category={category} />
+        <StyledWrapper category={category}>
+          <PostHeader
+            category={category}
+            date={date}
+            timeToRead={timeToRead}
+            title={title}
+          />
+          <StyledArticle itemScope itemType="http://schema.org/Article">
+            <StyledPost
+              dangerouslySetInnerHTML={{ __html: post.html }}
+              itemProp="articleBody"
+            />
+          </StyledArticle>
+        </StyledWrapper>
+        {/* <PostNav previous={previous} next={next} /> */}
+      </StyledContainer>
     </Layout>
   )
 }
@@ -68,19 +115,16 @@ export const pageQuery = graphql`
     $previousPostId: String
     $nextPostId: String
   ) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
+      timeToRead
       html
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        category
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
