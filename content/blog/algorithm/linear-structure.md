@@ -3,7 +3,7 @@ category: algorithm
 date: 2020-05-23
 title: Linear structure
 slug: /blog/algorithm/linear-structure
-description: "Intoduction to linear data structures."
+description: "Introduction to linear data structures."
 tags:
   - data structure
   - array

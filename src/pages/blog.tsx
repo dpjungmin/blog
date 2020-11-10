@@ -35,6 +35,12 @@ interface BlogPageProps {
   }
 }
 
+const StyledContainer = styled.div`
+  ${mixin.container}
+  max-width: 1400px;
+  position: relative;
+`
+
 const StyledBackButton = styled(Link)`
   position: fixed;
   top: 0;
@@ -51,12 +57,6 @@ const StyledBackButton = styled(Link)`
     margin-right: 4px;
   }
   ${media.phablet`left: 70%;`};
-`
-
-const StyledContainer = styled.div`
-  ${mixin.container}
-  max-width: 1400px;
-  position: relative;
 `
 
 const StyledWrapper = styled.div`
@@ -86,8 +86,8 @@ const BlogPage: React.FC<BlogPageProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO title="All posts" />
-      <StyledBackButton to="/">Back</StyledBackButton>
       <StyledContainer>
+        <StyledBackButton to="/">Back</StyledBackButton>
         {posts && categories && (
           <StyledWrapper>
             <Category
