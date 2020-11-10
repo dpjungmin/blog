@@ -1,17 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled, { css } from "styled-components"
 import { theme, media } from "@styles"
+import {
+  GlobalStateContext,
+  GlobalDispatchContext,
+  SET_CATEGORY,
+} from "@context"
 
 const { mapCategoryToColor, fontSize } = theme
-
-interface CategoryPorps {
-  selected: string | undefined
-  setSelected: React.Dispatch<React.SetStateAction<string | undefined>>
-  categories: {
-    fieldValue: string
-    totalCount: number
-  }[]
-}
 
 const StyledContainer = styled.div`
   display: flex;
@@ -80,31 +76,41 @@ const StyledCategory = styled.div<{ category: string; selected: boolean }>`
     `}
 `
 
-const Category: React.FC<CategoryPorps> = ({
-  selected,
-  setSelected,
-  categories,
-}) => {
+interface CategoryPorps {
+  categories: {
+    fieldValue: string
+    totalCount: number
+  }[]
+}
+
+const Category: React.FC<CategoryPorps> = ({ categories }) => {
+  const { category } = useContext(GlobalStateContext)
+  const dispatch = useContext(GlobalDispatchContext)
+
+  const setCategory = (category: string | undefined) => {
+    dispatch({ type: SET_CATEGORY, value: category })
+  }
+
   return (
     <StyledContainer>
       <StyledHeader>Categories</StyledHeader>
       <StyledCategory
         category="all"
-        selected={selected ? false : true}
-        onClick={() => setSelected(undefined)}
+        selected={category ? false : true}
+        onClick={() => setCategory(undefined)}
       >
         All
       </StyledCategory>
       {categories.map(({ fieldValue, totalCount }) => {
-        const category = fieldValue[0].toUpperCase() + fieldValue.slice(1)
+        const _category = fieldValue[0].toUpperCase() + fieldValue.slice(1)
         return (
           <StyledCategory
             key={fieldValue}
             category={fieldValue}
-            selected={selected === fieldValue}
-            onClick={() => setSelected(fieldValue)}
+            selected={category === fieldValue}
+            onClick={() => setCategory(fieldValue)}
           >
-            {category}
+            {_category}
           </StyledCategory>
         )
       })}

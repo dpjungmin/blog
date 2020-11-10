@@ -7,3 +7,10 @@ import "./src/styles/normalize.css"
 // import "./src/styles/style.css"
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"
+// global context
+import React from "react"
+import { GlobalContextProvider } from "./src/context/global-context-provider"
+
+export const wrapRootElement = ({ element }) => {
+  return <GlobalContextProvider>{element}</GlobalContextProvider>
+}

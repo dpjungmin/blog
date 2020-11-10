@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import { graphql, Link } from "gatsby"
 import { WindowLocation } from "@reach/router"
 import { Layout, SEO } from "@components"
 import { BlogPosts, Category } from "@components/blog"
 import { theme, mixin, media } from "@styles"
+import { GlobalStateContext } from "@context"
 
 const { fontSize } = theme
+
+const StyledContainer = styled.div`
+  ${mixin.container}
+  max-width: 1400px;
+  position: relative;
+`
 
 interface BlogPageProps {
   readonly location: WindowLocation | undefined
@@ -35,12 +42,6 @@ interface BlogPageProps {
   }
 }
 
-const StyledContainer = styled.div`
-  ${mixin.container}
-  max-width: 1400px;
-  position: relative;
-`
-
 const StyledBackButton = styled(Link)`
   position: fixed;
   top: 0;
@@ -67,21 +68,21 @@ const StyledWrapper = styled.div`
 `
 
 const BlogPage: React.FC<BlogPageProps> = ({ data, location }) => {
-  const [selected, setSelected] = useState<string | undefined>(undefined)
-  const [posts, setPosts] = useState<any[]>(data.allMarkdownRemark.nodes)
+  const { category } = useContext(GlobalStateContext)
   const categories = data.categories.group
+  const [posts, setPosts] = useState<any[]>(data.allMarkdownRemark.nodes)
 
   useEffect(() => {
-    if (!selected) return setPosts(data.allMarkdownRemark.nodes)
+    if (!category) return setPosts(data.allMarkdownRemark.nodes)
     const allPosts = data.allMarkdownRemark.nodes
     var filteredPosts: any[] = []
     allPosts.forEach(post => {
-      if (post.frontmatter.category === selected) {
+      if (post.frontmatter.category === category) {
         filteredPosts.push(post)
       }
     })
     setPosts(filteredPosts)
-  }, [selected])
+  }, [category])
 
   return (
     <Layout location={location}>
@@ -90,11 +91,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ data, location }) => {
         <StyledBackButton to="/">Back</StyledBackButton>
         {posts && categories && (
           <StyledWrapper>
-            <Category
-              selected={selected}
-              setSelected={setSelected}
-              categories={categories}
-            />
+            <Category categories={categories} />
             <BlogPosts posts={posts} />
           </StyledWrapper>
         )}

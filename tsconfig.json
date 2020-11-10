@@ -44,6 +44,7 @@
     "paths": {
       "@components": ["src/components"],
       "@components/*": ["src/components/*"],
+      "@context": ["src/context"],
       "@lib": ["src/lib"],
       "@pages": ["src/pages"],
       "@styles": ["src/styles"]
