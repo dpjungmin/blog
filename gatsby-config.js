@@ -34,6 +34,8 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-autolink-headers`,
+          `gatsby-plugin-catch-links`,
           {
             resolve: `gatsby-remark-code-titles`,
             options: {

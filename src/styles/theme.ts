@@ -20,7 +20,7 @@ const mapCategoryToColor = (t: string, light: boolean = false) => {
     case "travel":
       if (light) return "#34ed43"
       return "#20ad2b"
-    case "algorithm":
+    case "algorithm" || "PS":
       if (light) return "#626ee3"
       return "#535dc5"
     case "research":

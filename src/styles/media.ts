@@ -1,7 +1,8 @@
 import { css } from "styled-components"
 
 const sizes: { [key: string]: number } = {
-  giant: 1440,
+  giant: 1920,
+  huge: 1440,
   bigDesktop: 1200,
   desktop: 1000,
   tablet: 768,
