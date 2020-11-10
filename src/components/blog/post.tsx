@@ -48,7 +48,7 @@ const StyledHeader = styled.header`
 
 const StyledTitle = styled.h3`
   font-size: ${fontSize.xl};
-  margin: 0 0 5px;
+  margin: 0;
 `
 
 const StyledDate = styled.small`

@@ -29,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
     color: ${palette.text};
     font-family: ${font.body};
     font-size: 1rem;
+    position: relative;
   }
 
   #root {}

@@ -3,7 +3,7 @@ import styled, { css } from "styled-components"
 import { WindowLocation } from "@reach/router"
 import { graphql } from "gatsby"
 import { Layout, SEO } from "@components"
-import { PostHeader, PostNav, IndexButton } from "@components/post"
+import { PostHeader, PostNav, IndexButton, StyledPost } from "@components/post"
 import { mixin, theme, media } from "@styles"
 
 const { mapCategoryToColor, fontSize } = theme
@@ -29,17 +29,6 @@ const StyledWrapper = styled.div<{ category: string }>`
 
 const StyledArticle = styled.article`
   padding: 30px 60px;
-`
-
-const StyledPost = styled.section`
-  img {
-    padding: 40px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 100%;
-    background-color: #f6f9fc;
-    display: block;
-  }
 `
 
 interface BlogPostTemplate {
@@ -98,10 +87,11 @@ const BlogPostTemplate: React.FC<BlogPostTemplate> = ({ data, location }) => {
             <StyledPost
               dangerouslySetInnerHTML={{ __html: post.html }}
               itemProp="articleBody"
+              category={category}
             />
           </StyledArticle>
         </StyledWrapper>
-        {/* <PostNav previous={previous} next={next} /> */}
+        <PostNav previous={previous} next={next} category={category} />
       </StyledContainer>
     </Layout>
   )

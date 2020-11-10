@@ -12,15 +12,19 @@ const palette = {
   blue: "#0177b7",
 }
 
-const mapCategoryToColor = (t: string) => {
+const mapCategoryToColor = (t: string, light: boolean = false) => {
   switch (t) {
-    case "algorithm":
+    case "daily":
+      if (light) return "#ef5151"
       return "#890023"
     case "travel":
+      if (light) return "#34ed43"
       return "#20ad2b"
-    case "daily":
-      return "#626ee3"
+    case "algorithm":
+      if (light) return "#626ee3"
+      return "#535dc5"
     case "research":
+      if (light) return "#383535"
       return "#110f0f"
     default:
       return "grey"

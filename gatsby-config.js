@@ -35,9 +35,34 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-code-titles`,
+            options: {
+              className: `gatsby-code-title`,
+            },
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 630,
+            },
+          },
+          {
+            resolve: `gatsby-remark-code-buttons`,
+            options: {
+              buttonContainerClass: `gatsby-code-button-container`,
+              buttonClass: `gatsby-code-button`,
+              buttonText: ``,
+              svgIconClass: `gatsby-code-button-icon`,
+              // Optional svg icon. Defaults to svg string and can be
+              // replaced with any other valid svg. Use custom classes
+              // in the svg string and skip `iconClass` option.
+              svgIcon: `Copy to clipboard`,
+              tooltipText: ``,
+              toasterClass: `gatsby-code-button-toaster`,
+              toasterTextClass: `gatsby-code-button-toaster-text `,
+              toasterText: ``,
+              // Optional toaster duration. Defaults to 3500.
+              toasterDuration: 0,
             },
           },
           {
@@ -46,7 +71,36 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false,
+              languageExtensions: [
+                {
+                  language: "superscript",
+                  extend: "javascript",
+                  definition: {
+                    superscript_types: /(SuperType)/,
+                  },
+                  insertBefore: {
+                    function: {
+                      superscript_keywords: /(superif|superelse)/,
+                    },
+                  },
+                },
+              ],
+              prompt: {
+                user: "root",
+                host: "localhost",
+                global: false,
+              },
+              escapeEntities: {},
+            },
+          },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],

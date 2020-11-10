@@ -14,7 +14,7 @@ const StyledButton = styled(Link)<{ category: string }>`
   ${props => css`
     background-color: ${mapCategoryToColor(props.category)};
     &:hover {
-      transform: translateX(-4px);
+      background-color: ${mapCategoryToColor(props.category, true)};
     }
   `}
   color: white;

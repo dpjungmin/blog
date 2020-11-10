@@ -5,3 +5,18 @@
 - slug: string
 - description: string
 - tags: string[]
+
+
+```go:title=example.go
+File name will appear above code block.
+```
+
+```go:clipboard=false
+Copy button will now appear.
+```
+
+```
+// highlight-start
+This portion will be highlighted.
+// highlight-end
+```
