@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     background-color: ${palette.bg};
     color: ${palette.text};
-    font-family: ${font.body};
+    font-family: ${font};
     font-size: 1rem;
     position: relative;
   }

@@ -5,7 +5,7 @@ const { mapCategoryToColor } = theme
 
 const StyledPost = styled.section<{ category: string }>`
   img {
-    padding: 40px;
+    /* padding: 40px; */
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 100%;

@@ -43,17 +43,7 @@ const mapCategoryToColor = (
   }
 }
 
-const fontFamily = {
-  sans: `Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
-  "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-  serif: `"Merriweather", "Georgia", Cambria, "Times New Roman"`,
-}
-
-const font = {
-  body: fontFamily.serif,
-  header: fontFamily.sans,
-}
+const font = "Montserrat, Open Sans, Noto Sans KR, Noto Serif KR"
 
 const fontSize = {
   xxs: "12px",
