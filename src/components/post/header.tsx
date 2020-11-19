@@ -30,8 +30,10 @@ const StyledHeader = styled.header<{ category: string }>`
     margin: 0 20px 0 0;
     transition: box-shadow 0.2s, transform 0.2s;
     &:hover {
-      /* box-shadow: 0 7px 20px 0 rgba(98, 110, 227, 0.24); */
-      box-shadow: 0 7px 20px 0 rgba(159, 165, 212, 0.24);
+      ${props => css`
+        box-shadow: 0 7px 20px 0
+          ${mapCategoryToColor(props.category, false, true)};
+      `}
       transform: translateY(-3px);
     }
     ${media.tablet`margin-bottom: 15px;`}

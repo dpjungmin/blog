@@ -31,7 +31,16 @@ const StyledButton = styled(Link)<{ category: string }>`
   align-items: center;
   white-space: nowrap;
   border: none;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  transition: background 120ms ease-out 0s, color 120ms ease-out 0s,
+    box-shadow 120ms ease-out 0s;
+  border-radius: 6px;
+  box-shadow: rgba(8, 35, 51, 0.1) 0px 2px 4px;
+  &:active {
+    transform: translate3d(0px, 1px, 0px);
+  }
+  &::after {
+    display: none !important;
+  }
   svg {
     width: 20px;
     margin-right: 10px;
@@ -45,7 +54,7 @@ interface IndexButtonProps {
 const IndexButton: React.FC<IndexButtonProps> = ({ category }) => {
   return (
     <StyledContainer>
-      <StyledButton to="/blog" category={category}>
+      <StyledButton to="/" category={category}>
         <Icon name="arrow-left" />
         Index
       </StyledButton>

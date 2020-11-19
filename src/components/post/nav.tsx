@@ -53,19 +53,15 @@ const StyledNav = styled.nav<{ category: string }>`
 
 interface PostNavProps {
   previous: {
-    fields: {
-      slug: string
-    }
     frontmatter: {
       title: string
+      slug: string
     }
   }
   next: {
-    fields: {
-      slug: string
-    }
     frontmatter: {
       title: string
+      slug: string
     }
   }
   category: string
@@ -79,7 +75,7 @@ const PostNav: React.FC<PostNavProps> = ({ previous, next, category }) => {
           {previous && (
             <>
               <p>Previous</p>
-              <Link to={previous.fields.slug} rel="prev">
+              <Link to={previous.frontmatter.slug} rel="prev">
                 <Icon name="arrow-left" /> {previous.frontmatter.title}
               </Link>
             </>
@@ -89,7 +85,7 @@ const PostNav: React.FC<PostNavProps> = ({ previous, next, category }) => {
           {next && (
             <>
               <p>Next</p>
-              <Link to={next.fields.slug} rel="next">
+              <Link to={next.frontmatter.slug} rel="next">
                 {next.frontmatter.title} <Icon name="arrow-right" />
               </Link>
             </>

@@ -6,14 +6,12 @@ interface BlogPostsProps {
   posts: {
     excerpt: string
     timeToRead: string
-    fields: {
-      slug: string
-    }
     frontmatter: {
       title: string
       date: string
       description: string
       category: string
+      slug: string
     }
   }[]
 }
@@ -45,7 +43,7 @@ const BlogPosts: React.FC<BlogPostsProps> = ({ posts }) => {
       <ol>
         {posts.map(post => {
           return (
-            <li key={post.fields.slug}>
+            <li key={post.frontmatter.slug}>
               <Post post={post} />
             </li>
           )

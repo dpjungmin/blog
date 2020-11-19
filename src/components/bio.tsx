@@ -1,33 +1,21 @@
 import React from "react"
 import styled from "styled-components"
 import Image from "gatsby-image"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import { theme, mixin, media } from "@styles"
 import { Icon } from "@components"
 
-interface BioProps {}
-
-const { palette, fontSize, transition } = theme
+const { palette, transition } = theme
 
 const StyledContainer = styled.div`
   ${mixin.flexCenter}
-  min-height: 100vh;
-  flex-direction: column;
   position: relative;
-  padding: 20px 40px;
-`
-
-const StyledHeader = styled.h2`
-  font-size: 35px;
-  ${media.phablet`
-    width: 100%;  
-    justify-content: right;
+  margin-bottom: 100px;
+  ${media.tablet`
+    margin-bottom: 80px;
+    flex-direction: column;
+    align-items: flex-start;
   `}
-`
-
-const StyledSubHeader = styled.h4`
-  font-size: 18px;
-  margin: 0 0 40px;
 `
 
 const StyledWrapper = styled.div`
@@ -53,7 +41,7 @@ const StyledLinkedInLink = styled.div`
   margin: 0;
   list-style: none;
   svg {
-    width: 32px;
+    width: 24px;
     fill: ${palette.blue};
     transition: ${transition};
     &:hover,
@@ -65,36 +53,21 @@ const StyledLinkedInLink = styled.div`
 `
 
 const StyledBio = styled.div`
-  ${mixin.flexCenter}
-`
-
-const StyledLinkBlock = styled.div`
-  ${mixin.flexAround}
-  margin-top: 20px;
-  font-weight: 600;
-  font-size: ${fontSize.md};
-  ${media.phablet`
-    width: 100%;
-    justify-content: right;
-  `}
-`
-const StyledLink = styled(Link)`
-  background-color: ${palette.purple};
-  ${mixin.boxShadow.button}
-  border-radius: 4px;
-  color: white;
-  padding: 15px 30px;
-  &:hover {
-    background-color: ${palette.purpleHover};
+  margin-left: 20px;
+  transform: translateY(-14px);
+  h3 {
+    margin: 0 0 5px;
   }
 `
+
+interface BioProps {}
 
 const Bio: React.FC<BioProps> = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.png/" }) {
         childImageSharp {
-          fixed(width: 250, height: 250, quality: 95) {
+          fixed(width: 150, height: 150, quality: 95) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -122,10 +95,7 @@ const Bio: React.FC<BioProps> = () => {
 
   return (
     <StyledContainer>
-      <StyledHeader>{name}</StyledHeader>
-      <StyledSubHeader>{position}</StyledSubHeader>
       <StyledWrapper>
-        <div></div>
         <StyledPic fixed={avatar} alt={name || `profile-pic`} />
         <StyledLinkedInLink>
           <a
@@ -139,13 +109,9 @@ const Bio: React.FC<BioProps> = () => {
         </StyledLinkedInLink>
       </StyledWrapper>
       <StyledBio>
-        <p>
-          Hi I'm <strong>{name}</strong> {summary || null}
-        </p>
+        <h3>{position}</h3>
+        <p>{summary || null}</p>
       </StyledBio>
-      <StyledLinkBlock>
-        <StyledLink to="/blog">Blog</StyledLink>
-      </StyledLinkBlock>
     </StyledContainer>
   )
 }

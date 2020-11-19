@@ -10,14 +10,12 @@ interface PostProps {
   post: {
     excerpt: string
     timeToRead: string
-    fields: {
-      slug: string
-    }
     frontmatter: {
       title: string
       date: string
       description: string
       category: string
+      slug: string
     }
   }
 }
@@ -83,9 +81,8 @@ const StyledTimeToRead = styled.div<{ category: string }>`
 `
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  const { excerpt, timeToRead, fields, frontmatter } = post
-  const { slug } = fields
-  const { title, date, description, category } = frontmatter
+  const { excerpt, timeToRead, frontmatter } = post
+  const { title, date, description, category, slug } = frontmatter
 
   return (
     <StyledContainer

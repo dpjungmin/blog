@@ -61,19 +61,15 @@ interface BlogPostTemplate {
       }
     }
     previous: {
-      fields: {
-        slug: string
-      }
       frontmatter: {
         title: string
+        slug: string
       }
     }
     next: {
-      fields: {
-        slug: string
-      }
       frontmatter: {
         title: string
+        slug: string
       }
     }
   }
@@ -135,19 +131,15 @@ export const pageQuery = graphql`
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
       frontmatter {
         title
+        slug
       }
     }
     next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
       frontmatter {
         title
+        slug
       }
     }
   }
