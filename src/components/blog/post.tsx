@@ -2,7 +2,7 @@ import React from "react"
 import styled, { css } from "styled-components"
 import { Link } from "gatsby"
 import { Icon } from "@components"
-import { theme } from "@styles"
+import { theme, mixin } from "@styles"
 
 const { mapCategoryToColor, fontSize } = theme
 
@@ -16,6 +16,7 @@ interface PostProps {
       description: string
       category: string
       slug: string
+      tags: string[]
     }
   }
 }
@@ -54,6 +55,29 @@ const StyledDate = styled.small`
   font-size: ${fontSize.sm};
 `
 
+const StyledTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const StyledTag = styled.div<{ category: string }>`
+  ${mixin.flexCenter}
+  font-size: 14px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 50px;
+  border: none;
+  overflow: hidden;
+  margin-bottom: 4px;
+  ${props => css`
+    color: ${mapCategoryToColor(props.category)};
+    background-color: ${mapCategoryToColor(props.category, false, true)};
+  `}
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+`
+
 const StyledDescription = styled.section`
   font-size: ${fontSize.md};
 `
@@ -82,7 +106,7 @@ const StyledTimeToRead = styled.div<{ category: string }>`
 
 const Post: React.FC<PostProps> = ({ post }) => {
   const { excerpt, timeToRead, frontmatter } = post
-  const { title, date, description, category, slug } = frontmatter
+  const { title, date, description, category, slug, tags } = frontmatter
 
   return (
     <StyledContainer
@@ -97,6 +121,14 @@ const Post: React.FC<PostProps> = ({ post }) => {
           </StyledTitle>
           <StyledDate>{date}</StyledDate>
         </StyledHeader>
+        <StyledTags>
+          {tags &&
+            tags.map(tag => (
+              <StyledTag key={tag} category={category}>
+                {tag}
+              </StyledTag>
+            ))}
+        </StyledTags>
         <StyledDescription>
           <p
             dangerouslySetInnerHTML={{

@@ -20,23 +20,23 @@ const mapCategoryToColor = (
   switch (t.toLowerCase()) {
     case "travel":
       if (hover) return "#ff8787"
-      if (shadow) return "rgba(255, 107, 107, 0.2)"
+      if (shadow) return "rgba(255, 107, 107, 0.15)"
       return "#ff6b6b"
     case "daily":
       if (hover) return "#19e28d"
-      if (shadow) return "rgba(21, 189, 118, 0.2)"
+      if (shadow) return "rgba(21, 189, 118, 0.15)"
       return "#15bd76"
     case "ps":
       if (hover) return "#805ad5"
-      if (shadow) return "rgba(159, 122, 234, 0.2)"
+      if (shadow) return "rgba(159, 122, 234, 0.15)"
       return "#9f7aea"
     case "algorithm":
       if (hover) return "#208ff0"
-      if (shadow) return "rgba(15, 122, 216, 0.2)"
+      if (shadow) return "rgba(15, 122, 216, 0.15)"
       return "#0f7ad8"
     case "research":
       if (hover) return "#124c6e"
-      if (shadow) return "rgba(12, 52, 75, 0.2)"
+      if (shadow) return "rgba(12, 52, 75, 0.15)"
       return "#0c344b"
     default:
       return "grey"

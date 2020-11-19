@@ -26,6 +26,7 @@ interface BlogPageProps {
           description: string
           category: string
           slug: string
+          tags: string[]
         }
       }[]
     }
@@ -92,6 +93,7 @@ export const pageQuery = graphql`
           description
           category
           slug
+          tags
         }
       }
     }

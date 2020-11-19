@@ -59,6 +59,7 @@ interface BlogPostTemplate {
         date: string
         description: string
         category: string
+        tags: string[]
       }
     }
     previous: {
@@ -79,7 +80,7 @@ interface BlogPostTemplate {
 const BlogPostTemplate: React.FC<BlogPostTemplate> = ({ data, location }) => {
   const post = data.markdownRemark
   const { id, excerpt, timeToRead, html, tableOfContents, frontmatter } = post
-  const { title, date, description, category } = frontmatter
+  const { title, date, description, category, tags } = frontmatter
   const { previous, next } = data
 
   return (
@@ -93,6 +94,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplate> = ({ data, location }) => {
             date={date}
             timeToRead={timeToRead}
             title={title}
+            tags={tags}
           />
           <TOC toc={tableOfContents} />
           <StyledArticle itemScope itemType="http://schema.org/Article">
@@ -129,6 +131,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         category
+        tags
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

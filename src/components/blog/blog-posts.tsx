@@ -12,6 +12,7 @@ interface BlogPostsProps {
       description: string
       category: string
       slug: string
+      tags: string[]
     }
   }[]
 }

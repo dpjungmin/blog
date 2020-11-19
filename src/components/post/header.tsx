@@ -77,11 +77,36 @@ const StyledPic = styled(Image)`
   margin: 0 10px 0 0;
 `
 
+const StyledTags = styled.div`
+  ${mixin.flexCenter};
+  flex-wrap: wrap;
+  margin-top: 8px;
+`
+
+const StyledTag = styled.div<{ category: string }>`
+  ${mixin.flexCenter}
+  font-size: 14px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 50px;
+  border: none;
+  overflow: hidden;
+  margin-bottom: 4px;
+  ${props => css`
+    color: ${mapCategoryToColor(props.category)};
+    background-color: ${mapCategoryToColor(props.category, false, true)};
+  `}
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+`
+
 interface PostHeaderProps {
   category: string
   date: string
   timeToRead: number
   title: string
+  tags: string[]
 }
 
 const PostHeader: React.FC<PostHeaderProps> = ({
@@ -89,6 +114,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({
   date,
   timeToRead,
   title,
+  tags,
 }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -142,6 +168,14 @@ const PostHeader: React.FC<PostHeaderProps> = ({
         </p>
       </div>
       <h1 itemProp="headline">{title}</h1>
+      <StyledTags>
+        {tags &&
+          tags.map(tag => (
+            <StyledTag key={tag} category={category}>
+              {tag}
+            </StyledTag>
+          ))}
+      </StyledTags>
     </StyledHeader>
   )
 }
