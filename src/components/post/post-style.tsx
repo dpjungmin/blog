@@ -137,7 +137,7 @@ const StyledPost = styled.section<{ category: string }>`
     margin-right: -1.3em;
     margin-left: -1.5em;
     & > * {
-      background-color: #e7eaee;
+      background-color: #edeff3;
     }
   }
 
