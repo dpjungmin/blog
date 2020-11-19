@@ -1,7 +1,8 @@
 import React from "react"
 import { ImLinkedin } from "react-icons/im"
-import { GoClock } from "react-icons/go"
+import { GoClock, GoMarkGithub } from "react-icons/go"
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
+import { MdEmail } from "react-icons/md"
 
 interface IconProps {
   name: string
@@ -9,8 +10,12 @@ interface IconProps {
 
 const Icon: React.FC<IconProps> = ({ name }) => {
   switch (name.toLowerCase()) {
+    case "github":
+      return <GoMarkGithub />
     case "linkedin":
       return <ImLinkedin />
+    case "email":
+      return <MdEmail />
     case "clock":
       return <GoClock />
     case "arrow-right":

@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import styled, { css } from "styled-components"
 import { theme, media } from "@styles"
 import {
@@ -84,8 +84,15 @@ interface CategoryPorps {
 }
 
 const Category: React.FC<CategoryPorps> = ({ categories }) => {
+  const [total, setTotal] = useState(0)
   const { category } = useContext(GlobalStateContext)
   const dispatch = useContext(GlobalDispatchContext)
+
+  useEffect(() => {
+    let cnt = 0
+    categories.forEach(({ totalCount }) => (cnt += totalCount))
+    setTotal(cnt)
+  }, [categories])
 
   const setCategory = (category: string | undefined) => {
     dispatch({ type: SET_CATEGORY, value: category })
@@ -99,7 +106,7 @@ const Category: React.FC<CategoryPorps> = ({ categories }) => {
         selected={category ? false : true}
         onClick={() => setCategory(undefined)}
       >
-        All
+        All ({total})
       </StyledCategory>
       {categories.map(({ fieldValue, totalCount }) => {
         const _category = fieldValue[0].toUpperCase() + fieldValue.slice(1)
@@ -110,7 +117,7 @@ const Category: React.FC<CategoryPorps> = ({ categories }) => {
             selected={category === fieldValue}
             onClick={() => setCategory(fieldValue)}
           >
-            {_category}
+            {_category} ({totalCount})
           </StyledCategory>
         )
       })}

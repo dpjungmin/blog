@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { theme, mixin, media } from "@styles"
 import { Icon } from "@components"
 
-const { palette, transition } = theme
+const { palette } = theme
 
 const StyledContainer = styled.div`
   ${mixin.flexCenter}
@@ -18,10 +18,6 @@ const StyledContainer = styled.div`
   `}
 `
 
-const StyledWrapper = styled.div`
-  position: relative;
-`
-
 const StyledPic = styled(Image)`
   height: 250px;
   width: 250px;
@@ -31,32 +27,49 @@ const StyledPic = styled(Image)`
   background-color: ${palette.picBg};
 `
 
-const StyledLinkedInLink = styled.div`
-  position: absolute;
-  bottom: 30px;
-  right: 4px;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+const StyledBio = styled.div`
+  margin-left: 20px;
+  h3 {
+    margin: 0 0 5px;
+    span {
+      font-size: 16px;
+      color: darkslateblue;
+    }
+  }
   svg {
-    width: 24px;
-    fill: ${palette.blue};
-    transition: ${transition};
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      transform: translateY(-3px);
+    width: 32px;
+    height: 32px;
+    color: rgb(173, 181, 189);
+    &:hover {
+      color: black;
     }
   }
 `
 
-const StyledBio = styled.div`
-  margin-left: 20px;
-  transform: translateY(-14px);
-  h3 {
-    margin: 0 0 5px;
+const StyledLinks = styled.div`
+  margin-top: 16px;
+`
+
+const StyledLink = styled.a`
+  position: relative;
+  &:not(:last-child) {
+    margin-right: 14px;
+  }
+  &.email {
+    div {
+      display: none;
+      position: absolute;
+      left: 120%;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+    &:hover > div {
+      display: block;
+    }
   }
 `
 
@@ -81,6 +94,8 @@ const Bio: React.FC<BioProps> = () => {
           }
           social {
             linkedin
+            github
+            email
           }
         }
       }
@@ -90,27 +105,39 @@ const Bio: React.FC<BioProps> = () => {
   const avatar = data.avatar.childImageSharp?.fixed
   const {
     author: { name, position, summary },
-    social: { linkedin },
+    social: { linkedin, github, email },
   } = data.site.siteMetadata
 
   return (
     <StyledContainer>
-      <StyledWrapper>
-        <StyledPic fixed={avatar} alt={name || `profile-pic`} />
-        <StyledLinkedInLink>
-          <a
+      <StyledPic fixed={avatar} alt={name || `profile-pic`} />
+      <StyledBio>
+        <h3>
+          {name} <span>({position})</span>
+        </h3>
+        <p>{summary || null}</p>
+        <StyledLinks>
+          <StyledLink
+            href={github}
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            aria-label="github"
+          >
+            <Icon name="github" />
+          </StyledLink>
+          <StyledLink
             href={linkedin}
             target="_blank"
             rel="nofollow noopener noreferrer"
             aria-label="linkedin"
           >
             <Icon name="linkedin" />
-          </a>
-        </StyledLinkedInLink>
-      </StyledWrapper>
-      <StyledBio>
-        <h3>{position}</h3>
-        <p>{summary || null}</p>
+          </StyledLink>
+          <StyledLink href={`mailto:${email}`} className="email">
+            <Icon name="email" />
+            <div>{email}</div>
+          </StyledLink>
+        </StyledLinks>
       </StyledBio>
     </StyledContainer>
   )
