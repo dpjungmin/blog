@@ -13,6 +13,10 @@ const StyledPost = styled.section<{ category: string }>`
     display: block;
   }
 
+  .anchor {
+    display: none;
+  }
+
   a {
     ${props => css`
       color: ${mapCategoryToColor(props.category)};

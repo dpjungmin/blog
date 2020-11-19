@@ -65,7 +65,6 @@ const IndexPage: React.FC<BlogPageProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO title="David Park | Student at South Korea" />
-
       <StyledContainer>
         <Bio />
         {posts && categories && (

@@ -42,6 +42,7 @@ const StyledWrapper = styled.div<{ category: string }>`
 
 const StyledArticle = styled.article`
   padding: 30px 60px;
+  ${media.tablet`padding: 30px;`}
 `
 
 interface BlogPostTemplate {
