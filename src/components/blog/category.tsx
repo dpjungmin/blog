@@ -105,6 +105,7 @@ const Category: React.FC<CategoryPorps> = ({ categories }) => {
         category="all"
         selected={category ? false : true}
         onClick={() => setCategory(undefined)}
+        className="all"
       >
         All ({total})
       </StyledCategory>

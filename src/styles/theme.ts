@@ -1,3 +1,5 @@
+import { GoReply } from "react-icons/go"
+
 const palette = {
   bg: "#f6f9fc",
   text: "#2e353f",
@@ -18,6 +20,8 @@ const mapCategoryToColor = (
   shadow: boolean = false
 ) => {
   switch (t.toLowerCase()) {
+    case "all":
+      return "grey"
     case "travel":
       if (hover) return "#ff8787"
       if (shadow) return "rgba(255, 107, 107, 0.15)"
