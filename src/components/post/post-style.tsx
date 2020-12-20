@@ -154,6 +154,12 @@ const StyledPost = styled.section<{ category: string }>`
     font-size: 13px;
   }
 
+  .gatsby-highlight pre[class="language-pseudo-code"]::before {
+    content: "pseudo code";
+    color: black;
+    background-color: #ebdbd3;
+  }
+
   .gatsby-highlight pre[class="language-cpp"]::before,
   .gatsby-highlight pre[class="language-c++"]::before {
     content: "c++";

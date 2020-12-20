@@ -6,21 +6,6 @@ import { theme, mixin } from "@styles"
 
 const { mapCategoryToColor, fontSize } = theme
 
-interface PostProps {
-  post: {
-    excerpt: string
-    timeToRead: string
-    frontmatter: {
-      title: string
-      date: string
-      description: string
-      category: string
-      slug: string
-      tags: string[]
-    }
-  }
-}
-
 const StyledContainer = styled.article<{ category: string }>`
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
@@ -104,6 +89,21 @@ const StyledTimeToRead = styled.div<{ category: string }>`
   }
 `
 
+interface PostProps {
+  post: {
+    excerpt: string
+    timeToRead: string
+    frontmatter: {
+      title: string
+      date: string
+      description: string
+      category: string
+      slug: string
+      tags: string[]
+    }
+  }
+}
+
 const Post: React.FC<PostProps> = ({ post }) => {
   const { excerpt, timeToRead, frontmatter } = post
   const { title, date, description, category, slug, tags } = frontmatter
@@ -132,7 +132,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
         <StyledDescription>
           <p
             dangerouslySetInnerHTML={{
-              __html: description || excerpt,
+              __html: description || "",
             }}
             itemProp="description"
           />

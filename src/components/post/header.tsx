@@ -99,6 +99,7 @@ const StyledTag = styled.div<{ category: string }>`
   &:not(:last-child) {
     margin-right: 10px;
   }
+  cursor: default;
 `
 
 interface PostHeaderProps {

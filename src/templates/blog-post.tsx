@@ -32,9 +32,9 @@ const StyledWrapper = styled.div<{ category: string }>`
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
   border-radius: 4px;
-  ${props => css`
-    border-left: 4px solid ${mapCategoryToColor(props.category)};
-  `}
+  /* ${props => css`
+    border-left: 1px solid ${mapCategoryToColor(props.category)};
+  `} */
   margin: 20px 0 0;
   min-width: 0;
   position: relative;
