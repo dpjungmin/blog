@@ -32,6 +32,7 @@ const StyledNav = styled.nav<{ category: string; end: boolean }>`
     padding: 10px 20px;
     border-radius: 4px;
     transition: all 0s;
+    margin-bottom: 16px;
     ${props => css`
       color: ${mapCategoryToColor(props.category)};
     `}
@@ -39,9 +40,6 @@ const StyledNav = styled.nav<{ category: string; end: boolean }>`
       ${props => css`
         border: 1px solid ${mapCategoryToColor(props.category)};
       `}
-    }
-    &:not(:last-child) {
-      margin-bottom: 16px;
     }
   }
   .prev {
