@@ -2,12 +2,13 @@ import React from "react"
 import styled, { css } from "styled-components"
 import { Link } from "gatsby"
 import { Icon } from "@components"
-import { theme, mixin } from "@styles"
+import { theme, mixin, media } from "@styles"
 
 const { mapCategoryToColor } = theme
 
 const StyledContainer = styled.div`
   /* ${mixin.flexAround} */
+  ${media.tablet`margin-left: 20px;`}
 `
 
 const StyledButton = styled(Link)<{ category: string }>`

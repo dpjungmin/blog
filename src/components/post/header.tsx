@@ -17,6 +17,7 @@ const StyledHeader = styled.header<{ category: string }>`
     align-items: flex-start;
     width: 100%;
     ${media.tablet`flex-direction: column;`}
+    ${media.tablet`margin-bottom: 25px;`}
   }
   .profile {
     display: flex;
@@ -36,7 +37,7 @@ const StyledHeader = styled.header<{ category: string }>`
       `}
       transform: translateY(-3px);
     }
-    ${media.tablet`margin-bottom: 15px;`}
+    ${media.tablet`margin-bottom: 25px;`}
   }
   .name {
     font-weight: 600;

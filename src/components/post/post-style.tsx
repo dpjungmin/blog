@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { theme } from "@styles"
+import { theme, media } from "@styles"
 
 const { mapCategoryToColor } = theme
 
@@ -109,6 +109,11 @@ const StyledPost = styled.section<{ category: string }>`
     padding-top: 2em;
     padding-left: 1.5em;
     position: relative;
+    ${media.tablet`
+      font-size: 12px;
+      padding-top: 3em;
+      padding-left: 2em;
+    `}
   }
 
   .gatsby-highlight pre[class*="language-"] {

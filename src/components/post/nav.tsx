@@ -6,16 +6,16 @@ import { theme, media } from "@styles"
 
 const { mapCategoryToColor, fontSize } = theme
 
-const StyledNav = styled.nav<{ category: string }>`
-  ul {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    list-style: none;
-    padding: 0;
-    ${media.desktop`flex-direction: column;`}
-  }
+const StyledNav = styled.nav<{ category: string; end: boolean }>`
+  padding: 0 14px;
+  margin-top: 50px;
+
+  display: flex;
+  justify-content: ${props => (props.end ? "flex-end" : "space-between")};
+
+  list-style: none;
+  ${media.tablet`flex-direction: column;`}
+
   svg {
     width: 20px;
   }
@@ -27,20 +27,33 @@ const StyledNav = styled.nav<{ category: string }>`
     margin-top: 0rem;
   }
   a {
+    font-size: ${fontSize.lg};
+    border: 1px solid lightgray;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0s;
     ${props => css`
       color: ${mapCategoryToColor(props.category)};
     `}
-    font-size: ${fontSize.lg};
+    &:hover {
+      ${props => css`
+        border: 1px solid ${mapCategoryToColor(props.category)};
+      `}
+    }
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
   }
   .prev {
+    display: flex;
+    align-self: flex-start;
     svg {
       margin-right: 10px;
     }
   }
   .next {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    align-self: flex-end;
     p {
       display: flex;
       justify-content: right;
@@ -68,30 +81,30 @@ interface PostNavProps {
 }
 
 const PostNav: React.FC<PostNavProps> = ({ previous, next, category }) => {
+  const end = next != null && previous == null
+
   return (
-    <StyledNav category={category}>
-      <ul>
-        <li className="prev">
-          {previous && (
-            <>
-              <p>Previous</p>
-              <Link to={previous.frontmatter.slug} rel="prev">
-                <Icon name="arrow-left" /> {previous.frontmatter.title}
-              </Link>
-            </>
-          )}
-        </li>
-        <li className="next">
-          {next && (
-            <>
-              <p>Next</p>
-              <Link to={next.frontmatter.slug} rel="next">
-                {next.frontmatter.title} <Icon name="arrow-right" />
-              </Link>
-            </>
-          )}
-        </li>
-      </ul>
+    <StyledNav category={category} end={end}>
+      {previous && (
+        <Link to={previous.frontmatter.slug} rel="prev">
+          <p>Previous</p>
+          <div className="prev">
+            <Icon name="arrow-left" />
+            <span>{previous.frontmatter.title}</span>
+          </div>
+        </Link>
+      )}
+      {next && (
+        <Link to={next.frontmatter.slug} rel="next">
+          <p>Next</p>
+          <div className="next">
+            {next.frontmatter.title}
+            <span>
+              <Icon name="arrow-right" />
+            </span>
+          </div>
+        </Link>
+      )}
     </StyledNav>
   )
 }
