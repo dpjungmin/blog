@@ -18,12 +18,20 @@ const StyledPost = styled.section<{ category: string }>`
   }
 
   a {
+    display: inline-flex;
     ${props => css`
       color: ${mapCategoryToColor(props.category)};
       &:hover {
         color: ${mapCategoryToColor(props.category, true)};
       }
     `}
+    &::before {
+      white-space: pre;
+    }
+  }
+
+  hr {
+    margin: 20px 6px;
   }
 
   h1,
@@ -39,11 +47,17 @@ const StyledPost = styled.section<{ category: string }>`
     font-family: Ubuntu, Helvetica, Arial, sans-serif;
     color: #02203c;
     line-height: 1.3;
+    font-weight: 600;
   }
 
   h2 {
     margin: 30px 0 15px;
-    font-size: 22px;
+    font-size: 24px;
+  }
+
+  h3 {
+    margin: 20px 0 15px;
+    font-size: 20px;
   }
 
   p {
@@ -181,6 +195,12 @@ const StyledPost = styled.section<{ category: string }>`
     content: "jsx";
     color: black;
     background-color: #90cdf9;
+  }
+  .gatsby-highlight pre[class="language-typescript"]::before,
+  .gatsby-highlight pre[class="language-ts"]::before {
+    content: "ts";
+    color: white;
+    background-color: #4778e2;
   }
   .gatsby-highlight pre[class="language-javascript"]::before,
   .gatsby-highlight pre[class="language-js"]::before {

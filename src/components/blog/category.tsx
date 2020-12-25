@@ -110,7 +110,7 @@ const Category: React.FC<CategoryPorps> = ({ categories }) => {
         All ({total})
       </StyledCategory>
       {categories.map(({ fieldValue, totalCount }) => {
-        const _category = fieldValue[0].toUpperCase() + fieldValue.slice(1)
+        // const _category = fieldValue[0].toUpperCase() + fieldValue.slice(1)
         return (
           <StyledCategory
             key={fieldValue}
@@ -118,7 +118,7 @@ const Category: React.FC<CategoryPorps> = ({ categories }) => {
             selected={category === fieldValue}
             onClick={() => setCategory(fieldValue)}
           >
-            {_category} ({totalCount})
+            {fieldValue} ({totalCount})
           </StyledCategory>
         )
       })}

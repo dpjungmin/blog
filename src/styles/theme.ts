@@ -35,17 +35,17 @@ const mapCategoryToColor = (
       if (shadow) return "rgba(159, 122, 234, 0.15)"
       return "#9f7aea"
     case "algorithm":
-      if (hover) return "#208ff0"
-      if (shadow) return "rgba(15, 122, 216, 0.15)"
-      return "#0f7ad8"
+      if (hover) return "#805ad5"
+      if (shadow) return "rgba(159, 122, 234, 0.15)"
+      return "#9f7aea"
     case "research":
       if (hover) return "#124c6e"
       if (shadow) return "rgba(12, 52, 75, 0.15)"
       return "#0c344b"
     default:
-      if (hover) return "#805ad5"
-      if (shadow) return "rgba(159, 122, 234, 0.15)"
-      return "#9f7aea"
+      if (hover) return "#208ff0"
+      if (shadow) return "rgba(15, 122, 216, 0.15)"
+      return "#0f7ad8"
   }
 }
 
