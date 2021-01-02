@@ -158,6 +158,10 @@ const StyledPost = styled.section<{ category: string }>`
     & > * {
       background-color: #edeff3;
     }
+    ${media.tablet`
+      margin-left: -2em;
+      border-left: 3px solid #dcdee0;
+    `}
   }
 
   /* Language badges */

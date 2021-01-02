@@ -56,11 +56,15 @@ const StyledLink = styled.a`
     margin-right: 14px;
   }
   &.email {
+    svg {
+      width: 40px;
+      height: 40px;
+    }
     div {
       display: none;
       position: absolute;
       left: 120%;
-      top: 0;
+      top: 10%;
       background-color: rgba(0, 0, 0, 0.6);
       color: #fff;
       border-radius: 4px;

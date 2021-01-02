@@ -30,6 +30,8 @@ const StyledTOC = styled.div`
   top: 112px;
   width: 250px;
   font-size: 14px;
+  max-height: 80vh;
+  overflow-y: auto;
   p {
     margin: 0;
   }
