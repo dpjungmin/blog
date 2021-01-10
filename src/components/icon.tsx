@@ -1,6 +1,6 @@
 import React from "react"
 import { ImLinkedin } from "react-icons/im"
-import { GoClock, GoMarkGithub } from "react-icons/go"
+import { GoClock, GoMarkGithub, GoSearch } from "react-icons/go"
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
 import { MdEmail } from "react-icons/md"
 
@@ -22,6 +22,8 @@ const Icon: React.FC<IconProps> = ({ name }) => {
       return <BsArrowRight />
     case "arrow-left":
       return <BsArrowLeft />
+    case "search":
+      return <GoSearch />
     default:
       throw new Error(`${name} is an invalid icon`)
   }

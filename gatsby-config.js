@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -32,6 +33,25 @@ module.exports = {
       },
     },
     {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        // Fields to index
+        fields: [`title`, `category`, `tags`],
+        // How to resolve each field`s value for a supported node type
+        resolvers: {
+          // For any node of type MarkdownRemark, list how to resolve the fields` values
+          MarkdownRemark: {
+            title: node => node.frontmatter.title,
+            category: node => node.frontmatter.category,
+            tags: node => node.frontmatter.tags,
+            slug: node => node.frontmatter.slug,
+          },
+        },
+        // Optional filter to limit indexed nodes
+        filter: (node, getNode) => node.frontmatter.tags !== "exempt",
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -41,6 +61,13 @@ module.exports = {
             resolve: `gatsby-remark-code-titles`,
             options: {
               className: `gatsby-code-title`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+              strict: `ignore`,
             },
           },
           {
@@ -62,10 +89,10 @@ module.exports = {
               svgIcon: `Copy to clipboard`,
               tooltipText: ``,
               toasterClass: `gatsby-code-button-toaster`,
-              toasterTextClass: `gatsby-code-button-toaster-text `,
-              toasterText: ``,
+              toasterTextClass: `gatsby-code-button-toaster-text`,
+              toasterText: `Copied!`,
               // Optional toaster duration. Defaults to 3500.
-              toasterDuration: 0,
+              toasterDuration: 4000,
             },
           },
           {

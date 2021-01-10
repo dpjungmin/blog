@@ -1,5 +1,5 @@
 ---
-category: daily
+category: Daily
 date: 2020-11-10
 title: First post
 slug: /daily/first-post

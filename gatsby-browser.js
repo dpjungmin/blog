@@ -1,8 +1,8 @@
 // custom typefaces
 import "typeface-montserrat"
 import "fontsource-open-sans"
-import "fontsource-noto-sans-kr"
-import "fontsource-noto-serif-kr"
+// import "fontsource-noto-sans-kr"
+// import "fontsource-noto-serif-kr"
 // normalize CSS across browsers
 import "./src/styles/normalize.css"
 // custom CSS styles
@@ -11,6 +11,12 @@ import "./src/styles/normalize.css"
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"
 import "prismjs/plugins/command-line/prism-command-line.css"
+import "./src/styles/prism/token.scss"
+import "./src/styles/prism/custom-code-buttons.scss"
+
+// Ketex
+import "katex/dist/katex.min.css"
+
 // global context
 import React from "react"
 import { GlobalContextProvider } from "./src/context/global-context-provider"

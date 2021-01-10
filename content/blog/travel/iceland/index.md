@@ -1,5 +1,5 @@
 ---
-category: travel
+category: Travel
 date: 2020-11-19
 title: Iceland
 slug: /travel/iceland

@@ -92,10 +92,12 @@ const StyledPost = styled.section<{ category: string }>`
   p,
   li {
     & > code {
-      padding: 1px 5px;
-      border-radius: 4px;
-      background-color: #a0a1b0;
-      color: #fff;
+      padding: 0.05em 0.3em 0.2em;
+      border-radius: 5px;
+      background-color: #edf2f7;
+      color: #1a202c;
+      line-height: 24px;
+      font-weight: 600;
     }
   }
 
@@ -115,7 +117,7 @@ const StyledPost = styled.section<{ category: string }>`
   }
 
   .gatsby-highlight {
-    background-color: #f6f9fc;
+    background-color: #f6f8fa;
     border-radius: 4px;
     overflow: auto;
     margin-bottom: 15px;
@@ -149,18 +151,18 @@ const StyledPost = styled.section<{ category: string }>`
   /* Line highlighting */
   .gatsby-highlight-code-line {
     display: block;
-    background-color: #edeff3;
-    border-left: 4px solid #dcdee0;
+    background-color: #d9f4e6;
+    border-left: 4px solid #d9f4e6;
     padding-left: calc(1em + 2px);
     padding-right: 1em;
     margin-right: -1.3em;
     margin-left: -1.5em;
     & > * {
-      background-color: #edeff3;
+      background-color: #d9f4e6;
     }
     ${media.tablet`
       margin-left: -2em;
-      border-left: 3px solid #dcdee0;
+      border-left: 3px solid #d9f4e6;
     `}
   }
 
@@ -263,54 +265,6 @@ const StyledPost = styled.section<{ category: string }>`
   }
   .gatsby-highlight pre[class="language-flow"]::before {
     content: "flow";
-  }
-
-  /* Copy button */
-  .gatsby-code-button-container {
-    transform: translate(-3px, -25px);
-    margin: 0;
-  }
-  .gatsby-code-button {
-    font-size: 12px;
-    color: #9f9fa3;
-    background-color: transparent;
-    padding: 4px 10px;
-    border-radius: 4px;
-    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-    position: absolute;
-    top: 0;
-    right: 0;
-    &:hover {
-      background-color: #e9e9f0;
-    }
-    &:active {
-      transform: translate3d(0px, 2px, 0px);
-    }
-    &::after {
-      content: none;
-    }
-  }
-
-  /* Shell prompt */
-  .command-line-prompt > span:before {
-    color: #999;
-    content: " ";
-    display: block;
-    padding-right: 0.8em;
-  }
-
-  /* Prompt for all users */
-  .command-line-prompt > span[data-user]:before {
-    content: "[" attr(data-user) "@" attr(data-host) "] $";
-  }
-
-  /* Prompt for root */
-  .command-line-prompt > span[data-user="root"]:before {
-    content: "[" attr(data-user) "@" attr(data-host) "] #";
-  }
-
-  .command-line-prompt > span[data-prompt]:before {
-    content: attr(data-prompt);
   }
 `
 
