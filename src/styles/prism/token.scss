@@ -1,18 +1,29 @@
-// .token {
-//   &.keyword {
-//     color: #d5408c;
-//   }
-//   &.function {
-//     color: #805ad5;
-//   }
-//   &.annotation,
-//   &.punctuation {
-//     color: #319795;
-//   }
-//   &.type-args {
-//     color: #dd6b21;
-//   }
-//   &.operator {
-//     background-color: #f6f8fa;
-//   }
-// }
+.token {
+  &.keyword {
+    color: #d5408c;
+  }
+  &.string {
+    color: #690;
+  }
+  &.function,
+  &.class-name {
+    color: #805ad5;
+  }
+  &.annotation {
+    color: #319795;
+  }
+  &.punctuation {
+    color: rgb(57, 58, 52);
+  }
+  &.directive-hash {
+    color: #d5408c;
+  }
+  &.number,
+  &.constant {
+    color: #dd6b21;
+  }
+  &.operator {
+    background-color: #f6f8fa;
+    color: #9a6e3a;
+  }
+}

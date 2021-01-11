@@ -1,16 +1,15 @@
 // custom typefaces
 import "typeface-montserrat"
 import "fontsource-open-sans"
-// import "fontsource-noto-sans-kr"
-// import "fontsource-noto-serif-kr"
+
 // normalize CSS across browsers
 import "./src/styles/normalize.css"
-// custom CSS styles
-// import "./src/styles/style.css"
 
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"
 import "prismjs/plugins/command-line/prism-command-line.css"
+
+// Custom styles
 import "./src/styles/prism/token.scss"
 import "./src/styles/prism/custom-code-buttons.scss"
 
