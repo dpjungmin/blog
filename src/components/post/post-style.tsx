@@ -62,6 +62,7 @@ const StyledPost = styled.section<{ category: string }>`
 
   p {
     margin: 15px 0;
+    line-height: 1.8;
   }
 
   ul,
@@ -71,14 +72,17 @@ const StyledPost = styled.section<{ category: string }>`
     p {
       margin: 0;
     }
+    li {
+      padding: 3px 0;
+    }
   }
 
   table {
     width: 100%;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 18px;
+    margin-bottom: 18px;
     th {
       background-color: #f6f9fc;
       padding: 5px 10px;
@@ -113,6 +117,27 @@ const StyledPost = styled.section<{ category: string }>`
     border-radius: 4px;
     p {
       margin: 0;
+    }
+    .gatsby-highlight {
+      background-color: #fff;
+      margin-top: 14px;
+      margin-right: 5px;
+      margin-left: 5px;
+      border: 1px solid #ddd;
+    }
+    table {
+      margin-top: 14px;
+      margin-right: 5px;
+      margin-left: 5px;
+      th {
+        background-color: #fcfaf5;
+      }
+      td {
+        background-color: #fff;
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: 24px;
     }
   }
 
@@ -225,9 +250,15 @@ const StyledPost = styled.section<{ category: string }>`
     background-color: #f67300;
   }
 
+  .gatsby-highlight pre[class="language-console"]::before {
+    content: "console";
+    color: white;
+    background-color: #5c5757;
+  }
+
   .gatsby-highlight pre[class="language-shell"]::before,
   .gatsby-highlight pre[class="language-bash"]::before {
-    content: "bash";
+    content: "shell";
     color: black;
     background-color: #ccd6f6;
   }
@@ -259,6 +290,8 @@ const StyledPost = styled.section<{ category: string }>`
   .gatsby-highlight pre[class="language-json"]::before,
   .gatsby-highlight pre[class="language-json5"]::before {
     content: "json";
+    color: white;
+    background-color: rgb(18, 184, 134);
   }
   .gatsby-highlight pre[class="language-diff"]::before {
     content: "diff";

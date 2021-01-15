@@ -42,6 +42,7 @@ const StyledTOC = styled.div`
     line-height: 1.6;
     li {
       display: block;
+      padding: 1.5px 0;
     }
     a {
       color: #78757a;
