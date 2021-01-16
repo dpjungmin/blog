@@ -90,6 +90,11 @@ const StyledPost = styled.section<{ category: string }>`
     td {
       padding: 5px 10px;
     }
+    ${media.tablet`
+      font-size: 12px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    `}
   }
 
   /* Inline code block in paragraph */
@@ -126,9 +131,7 @@ const StyledPost = styled.section<{ category: string }>`
       border: 1px solid #ddd;
     }
     table {
-      margin-top: 14px;
-      margin-right: 5px;
-      margin-left: 5px;
+      margin: 14px 0;
       th {
         background-color: #fcfaf5;
       }
