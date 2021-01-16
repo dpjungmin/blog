@@ -326,7 +326,7 @@ class A {
     return `${this.b} World!`
   }
 
-  @LogError("🥳") // highlight-line
+  @LogError("ㅎㅎㅎ") // highlight-line
   d(e: string): void {
     console.log(e)
     throw new Error()
@@ -352,10 +352,10 @@ new A().d("안녕!")
 
 ```console:clipboard=false
 안녕!
-🥳
+ㅎㅎㅎ
 ```
 
-출력 결과를 보면 `@LogError('🥳')`에 넘긴 값이 출력되는 것을 볼 수 있다. 신기히다..
+출력 결과를 보면 `@LogError('ㅎㅎㅎ')`에 넘긴 값이 출력되는 것을 볼 수 있다.
 
 이런식으로 method를 재정의할 수 있다고 한다. Parameter로 error message 대신에 function을 넘겼다면 해당 function을 호출하도록 만들 수도 있을 것이다.
 
@@ -583,7 +583,7 @@ get
 post
 ```
 
-각각의 method decorator에서 설장한 `method`와 `path` metadata를 `class decorator`에서 접근해 각각의 `route handler`를 만든 것을 확인할 수 있다.
+각각의 method decorator에서 설정한 `method`와 `path` metadata를 `class decorator`에서 접근해 각각의 `route handler`를 만든 것을 확인할 수 있다.
 
 이것을 응용하면 **여러 middleware를 설정해주는 method decorator**와 **request body를 validate해주는 method decorator**등과 같은 custom decorator를 만들 수 있다.
 
