@@ -3,11 +3,11 @@ module.exports = {
     title: `David Park`,
     author: {
       name: `David Park`,
-      position: `Computer Engineering Student`,
-      summary: `who lives and works in South Korea building useful things.`,
+      position: `MS in Computer Science`,
+      summary: `My goal is to produce positive changes through the power of computational approaches.`,
     },
     description: `A starter blog.`,
-    siteUrl: `https://dpjungmin.com/`,
+    siteUrl: `https://dparkjm.com/`,
     social: {
       twitter: `dpjungmin`,
       email: `dpjungmin@gmail.com`,

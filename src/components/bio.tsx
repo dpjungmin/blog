@@ -11,7 +11,8 @@ const StyledContainer = styled.div`
   ${mixin.flexCenter}
   position: relative;
   margin-bottom: 100px;
-  ${media.tablet`
+
+  ${media.bigDesktop`
     margin-bottom: 80px;
     flex-direction: column;
     align-items: flex-start;
@@ -117,7 +118,7 @@ const Bio: React.FC<BioProps> = () => {
       <StyledPic fixed={avatar} alt={name || `profile-pic`} />
       <StyledBio>
         <h3>
-          {name} <span>({position})</span>
+          {name} <span> ({position})</span>
         </h3>
         <p>{summary || null}</p>
         <StyledLinks>
